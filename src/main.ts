@@ -19,9 +19,13 @@ async function bootstrap() {
     );
 
   app.enableCors({
-    origin: true,
-    credentials: true,
-  });
+  origin: [
+    "http://localhost:3001",
+    "https://quotationapi.vercel.app",
+  ],
+  methods: "GET,POST,PUT,PATCH,DELETE,OPTIONS",
+  credentials: true,
+});
 
   await app.listen(
     process.env.PORT ?? 3001,
