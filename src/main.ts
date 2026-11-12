@@ -6,15 +6,18 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   app.enableCors({
-    origin: '*',
-    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    origin: true,
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+    allowedHeaders: 'Content-Type, Authorization',
+    credentials: false,
+    optionsSuccessStatus: 204,
+    preflightContinue: false,
   });
 
   await app.listen(process.env.PORT ?? 3001);
 }
 
 bootstrap();
-
 
 
 // import { NestFactory } from '@nestjs/core';
